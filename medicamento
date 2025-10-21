@@ -1,0 +1,12 @@
+INSERT INTO Medicamentos 
+(Nome, PrincipioAtivo, Fabricante, Categoria, Descricao, Indicacoes, ContraIndicacoes)
+VALUES 
+('Dipirona', 'Dipirona Sódica', 'EMS', 'Analgésico', 
+ 'A Dipirona é um medicamento utilizado como analgésico e antipirético. É amplamente utilizado no alívio de dores e febres.', 
+ 'Indicado para o alívio de dor moderada a intensa, febre e para o tratamento de dores de cabeça e musculares.',
+ 'Contraindicado para pessoas com hipersensibilidade a dipirona ou outros anti-inflamatórios não esteroides. Não deve ser usado durante a gravidez, especialmente no primeiro e terceiro trimestre.'),
+ 
+('Amoxicilina', 'Amoxicilina', 'GlaxoSmithKline', 'Antibiótico', 
+ 'A Amoxicilina é um antibiótico utilizado no tratamento de infecções bacterianas, sendo amplamente usada no tratamento de infecções respiratórias, urinárias e otorrinolaringológicas.',
+ 'Indicado para o tratamento de infecções causadas por bactérias sensíveis à amoxicilina, como infecções respiratórias, urinárias e da pele.',
+ 'Não deve ser usado por pacientes com histórico de reações alérgicas a penicilinas ou qualquer outro componente da fórmula. Pode causar diarreia e erupções cutâneas em alguns casos.');

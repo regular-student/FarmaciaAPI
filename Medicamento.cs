@@ -8,5 +8,7 @@ namespace FarmaciaAPI
         public string? Fabricante { get; set; }
         public string? Categoria { get; set; } // analgésico, antibiótico, etc
         public string? Descricao { get; set; }
+        public string? Indicacoes { get; set; }
+        public string? ContraIndicacoes { get; set; }
     }
 }
