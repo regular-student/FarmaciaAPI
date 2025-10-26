@@ -10,6 +10,6 @@ namespace FarmaciaAPI
         public string? Descricao { get; set; }
         public string? Indicacoes { get; set; }
         public string? ContraIndicacoes { get; set; }
-        public string? Img { get; set; }
+        public string? Imagem { get; set; }
     }
 }
