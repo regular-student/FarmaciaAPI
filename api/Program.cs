@@ -32,7 +32,8 @@ app.MapPost("/Medicamentos", async (AppDbContext db, Medicamento novoMedicamento
     return Results.Created($"/Medicamentos/{novoMedicamento.Id}", novoMedicamento);
     });
 
-app.MapPut("/Medicamentos/{id}", async (int id, AppDbContext db, Medicamento medicamentoAtualizado) => {
+app.MapPut("/Medicamentos/{id}", async (int id, AppDbContext db, Medicamento medicamentoAtualizado) =>
+{
     var medicamento = await db.Medicamentos.FindAsync(id);
     if (medicamento is null) return Results.NotFound("Medicamento não encontrado");
 
@@ -47,5 +48,15 @@ app.MapPut("/Medicamentos/{id}", async (int id, AppDbContext db, Medicamento med
 
     await db.SaveChangesAsync();
     return Results.Ok(medicamento);
+});
+
+app.MapDelete("/Medicamentos/{id}", async (int id, AppDbContext db) =>
+{
+    var medicamento = await db.Medicamentos.FindAsync(id);
+    if (medicamento is null) return Results.NotFound("Medicamento não encontrado");
+
+    db.Medicamentos.Remove(medicamento);
+    await db.SaveChangesAsync();
+    return Results.NoContent();
 });
 app.Run();
