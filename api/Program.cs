@@ -8,8 +8,16 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+//cors config
+builder.Services.AddCors(); //permite que o frontend faça fetch
 
 var app = builder.Build();
+
+//cors config 2
+app.UseCors(policy =>
+    policy.AllowAnyOrigin()
+          .AllowAnyHeader()
+          .AllowAnyMethod());
 
 //app.MapGet("/", () => "Hello World!");
 
