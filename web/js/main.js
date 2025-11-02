@@ -7,10 +7,18 @@ function mostrar(dados) {
     saida.textContent = JSON.stringify(dados, null, 2);
 }
 
-function exibirRemedio(remedio) {
+function exibirResultados(remedios) {
   saida.innerHTML = "";
 
-  const card = document.createElement("div");
+  // Se a lista estiver vazia, mostra uma mensagem
+  if (remedios.length === 0) {
+    saida.innerHTML = "<p>Nenhum remédio encontrado com esse termo.</p>";
+    return;
+  }
+
+  // Para cada remédio na lista, cria um card
+  remedios.forEach(remedio => {
+    const card = document.createElement("div");
     card.classList.add("card"); 
 
     card.innerHTML = `
@@ -24,34 +32,40 @@ function exibirRemedio(remedio) {
     `;
 
     saida.appendChild(card);
+  });
 }
 
-document.getElementById("listar").onclick = async () => {
-      const res = await fetch(`${API_URL}/`);
-      const data = await res.json();
-      mostrar(data);
-    };
+// document.getElementById("listar").onclick = async () => {
+//       const res = await fetch(`${API_URL}/`);
+//       const data = await res.json();
+//       mostrar(data);
+//     };
 
 
-searchInput.addEventListener("input", async (e) => {
-  const id = e.target.value
-  try {
-    const response = await fetch(`${API_URL}/Medicamentos/${id}`);
+//Busca por ID ou nome
+searchInput.addEventListener("keydown", async (e) => {
+  if (e.key === "Enter") {
+    const termo = e.target.value;
 
-    if (!response.ok) {
-            // Se a API retornar 404 ou 500, cairá aqui.
-            saida.innerHTML = `<p>Remédio com ID '${termoBusca}' não foi encontrado.</p>`;
-            return;
+    e.preventDefault();
+
+    try {
+      const response = await fetch(`${API_URL}/Medicamentos/search?termo=${termo}`);
+
+      if (!response.ok) {
+              // Se a API retornar 404 ou 500
+              saida.innerHTML = `<p>Remédio com ID ou Nome '${termo}' não foi encontrado.</p>`;
+              return;
+      }
+
+      const remedio = await response.json();
+
+      exibirResultados(remedio);
+    } catch (error) {
+          console.error("Erro ao buscar remédio:", error);
+          saida.innerHTML = "<p>Não foi possível conectar à API. Tente novamente.</p>";
     }
-
-    const remedio = await response.json();
-
-    exibirRemedio(remedio);
-  } catch (error) {
-        console.error("Erro ao buscar remédio:", error);
-        saida.innerHTML = "<p>Não foi possível conectar à API. Tente novamente.</p>";
   }
-  
 })    
 
 document.getElementById("adicionar").onclick = async () => {
