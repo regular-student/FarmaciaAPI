@@ -26,13 +26,37 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.MapGet("/Medicamentos/search", async (string termo, AppDbContext db) =>
+{
+    // retorna uma lista vazia
+    if (string.IsNullOrWhiteSpace(termo))
+    {
+        return Results.Ok(new List<Medicamento>());
+    }
+
+    // busca por ID primeiro
+    if (int.TryParse(termo, out int id))
+    {
+        var remedioPorId = await db.Medicamentos.FindAsync(id);
+        if (remedioPorId != null)
+        {
+            // retorna uma lista com um item
+            return Results.Ok(new List<Medicamento> { remedioPorId });
+        }
+    }
+
+    // busca por nome
+    var remediosPorNome = await db.Medicamentos
+        .Where(m => m.Nome != null && m.Nome.ToLower().Contains(termo.ToLower()))
+        .ToListAsync();
+
+    // Retorna lista de resultados
+    return Results.Ok(remediosPorNome);
+});
+
 app.MapGet("/", async (AppDbContext db) =>
     await db.Medicamentos.ToListAsync() );
-
-app.MapGet("/Medicamentos/{id}", async (int id, AppDbContext db) => {
-    var Medicamentos = await db.Medicamentos.FindAsync(id);
-    return Medicamentos is not null ? Results.Ok(Medicamentos) : Results.NotFound("Medicamento não encontrado");}
-    );
 
 app.MapPost("/Medicamentos", async (AppDbContext db, Medicamento novoMedicamento) =>
     {db.Medicamentos.Add(novoMedicamento);

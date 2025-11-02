@@ -10,7 +10,11 @@ namespace FarmaciaAPI.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-           
+           migrationBuilder.AddColumn<string>(
+                name: "Imagem",
+                table: "Medicamentos",
+                type: "TEXT",
+                nullable: true);
         }
 
         /// <inheritdoc />
