@@ -1,0 +1,3 @@
+--
+O código precisa de mais uma refatoração no main.js, ou talvez só melhorar o método adicionar e colocar mais um método pra deletar
+
