@@ -10,24 +10,39 @@ function mostrar(dados) {
 function exibirResultados(remedios) {
   saida.innerHTML = "";
 
-  // Se a lista estiver vazia, mostra uma mensagem
   if (remedios.length === 0) {
-    saida.innerHTML = "<p>Nenhum remédio encontrado com esse termo.</p>";
+    saida.innerHTML = `<div class="card-feedback"><p>Nenhum remédio encontrado com esse termo.</p></div>`;
     return;
   }
 
-  // Para cada remédio na lista, cria um card
   remedios.forEach(remedio => {
     const card = document.createElement("div");
     card.classList.add("card"); 
 
+    const imagemUrl = remedio.imagem || 'https://via.placeholder.com/200x200.png?text=Sem+Imagem';
+
     card.innerHTML = `
-        <div class="header">
-            <h3>${remedio.nome}</h3> 
+        <div class="card-esquerda">
+            <div class="header">
+                <h3>${remedio.nome}</h3> 
+            </div>
+            <div class="body">
+                <p><strong>Princípio Ativo:</strong> ${remedio.principioAtivo || 'Não informado'}</p>
+                <p><strong>Fabricante:</strong> ${remedio.fabricante || 'Não informado'}</p>
+                <p><strong>Categoria:</strong> ${remedio.categoria || 'Não informado'}</p>
+                
+                <p class="detalhe-remedio"><strong>Descrição:</strong> ${remedio.descricao || 'Não informado'}</p>
+                <p class="detalhe-remedio"><strong>Indicações:</strong> ${remedio.indicacoes || 'Não informado'}</p>
+                
+                <p class="detalhe-remedio"><strong>Contraindicações:</strong> ${remedio.contraIndicacoes || 'Não informado'}</p>
+            </div>
+            <div class="footer">
+                <span>ID: ${remedio.id}</span>
+            </div>
         </div>
-        <div class="body">
-            <p>${remedio.descricao || "Descrição não disponível."}</p>
-            <span>ID: ${remedio.id}</span>
+        
+        <div class="card-direita">
+             <img src="${imagemUrl}" alt="Imagem de ${remedio.nome}">
         </div>
     `;
 
@@ -54,7 +69,7 @@ searchInput.addEventListener("keydown", async (e) => {
 
       if (!response.ok) {
               // Se a API retornar 404 ou 500
-              saida.innerHTML = `<p>Remédio com ID ou Nome '${termo}' não foi encontrado.</p>`;
+              saida.innerHTML = `<div class="card-feedback"><p>Remédio com ID ou Nome '${termo}' não foi encontrado.</p></div>`;
               return;
       }
 
@@ -63,7 +78,7 @@ searchInput.addEventListener("keydown", async (e) => {
       exibirResultados(remedio);
     } catch (error) {
           console.error("Erro ao buscar remédio:", error);
-          saida.innerHTML = "<p>Não foi possível conectar à API. Tente novamente.</p>";
+          saida.innerHTML = `<div class="card-feedback"><p>Não foi possível conectar à API. Tente novamente.</p></div>`;
     }
   }
 })    

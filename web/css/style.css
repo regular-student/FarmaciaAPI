@@ -49,10 +49,36 @@
     background-color: #E0F7E7;
 }
 
-.search-wrapper {
+.pesquisa-central {
+    font-family: 'Lexend', sans-serif;
     display: flex;
     flex-direction: column;
-    gap: .25rem;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh; 
+    width: 100%;
+    text-align: center;
+}
+
+.pesquisa-central .search-wrapper {
+    width: 100%;
+    max-width: 700px;
+    margin-top: 1.5rem;
+}
+
+.pesquisa-central .remedio-cards {
+    width: 100%;
+    max-width: 700px;
+    margin-top: 1.5rem; 
+}
+
+.pesquisa-central #search {
+    font-size: 1.25rem;
+    padding: 0.75rem 1.25rem; 
+    border-radius: 30px;
+    border: 1px solid #ddd;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 input {
@@ -61,29 +87,81 @@ input {
 
 .remedio-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    gap: 1.5rem; 
 }
 
 .card {
-    border: 1px solid aquamarine;
     background-color: white;
-    padding: .5rem;
+    border: 1px solid #e0e0e0; 
+    border-radius: 8px;
+    padding: 1.5rem; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    text-align: left; 
+
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
 }
 
-.card > .header {
-    margin-bottom: .25rem;
+/* coluna esquerda, textos */
+.card-esquerda {
+    display: flex;
+    flex-direction: column; /* Empilha o header, body e footer */
+    flex: 2; /* Faz a coluna de texto ocupar 2/3 do espaço */
+    min-width: 0; /* Corrige bug de "overflow" do flex */
 }
 
-.card > .body {
-    font-size: .8rem;
-    color: #777;
+.card-esquerda .header h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+    margin-bottom: 1rem;
 }
 
-.hide {
-    display: none;
+.card-esquerda .body p {
+    font-size: 0.95rem; 
+    color: #555;
+    line-height: 1.5;
+    margin: 0 0 0.5rem 0; /* Espaço entre os <p> */
 }
 
+.card-esquerda .body .detalhe-remedio {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 0.5rem;
+}
 
+.card-esquerda .body strong {
+    color: #111;
+}
 
+/* id */
+.card-esquerda .footer {
+    margin-top: 1rem;
+}
 
+.card-esquerda .footer span {
+    font-size: 0.8rem;
+    color: #888;
+    background-color: #f5f5f5;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
 
+/* coluna da direita, imagem */
+.card-direita {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-direita img {
+    width: 100%;
+    max-width: 200px; /* limita o tamanho da imagem */
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover; /* garante que a imagem se ajuste bem */
+}
