@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
-    <script src="js/utils.js" defer></script> 
+    <script src="js/utils.js"></script> 
     <script src="js/layout.js" defer></script>
     <script src="js/remedios.js" defer></script>
 </head>
@@ -25,5 +25,29 @@
     <div class="remedio-cards" id="saida">
         </div>
 </section>
+    <script>
+        // Busca todos os medicamentos da API e exibe
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            const saida = document.getElementById("saida");
+            saida.innerHTML = `<div class="card-feedback"><p>Carregando medicamentos...</p></div>`;
+
+            try {
+                const response = await fetch(`${API_URL}/`);
+                
+                if (!response.ok) {
+                    throw new Error("Falha ao carregar dados da API.");
+                }
+
+                const data = await response.json();
+
+                exibirResultados(data);
+
+            } catch (error) {
+                console.error("Erro ao carregar medicamentos:", error);
+                saida.innerHTML = `<div class="card-feedback"><p>Não foi possível conectar à API. Tente novamente.</p></div>`;
+            }
+        });
+    </script>
 </body>
 </html>
