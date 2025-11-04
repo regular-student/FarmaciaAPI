@@ -14,15 +14,58 @@
     <script src="js/main.js" defer></script>
 </head>
 <body>
+    <!-- protótipo post put delete -->
+     <!-- --
+     --
+      -->
     <header id="navbar-placeholder"></header>
 
     <section class="pesquisa-central">
-    <div class="header">
-        
-    </div>
+        <section class="pesquisa-central">
+        <div id="saida-feedback"></div>
 
-    <div class="remedio-cards" id="saida">
+        <div class="form-container">
+            <h2>Adicionar Novo Medicamento (POST)</h2>
+            <form id="form-adicionar">
+                <input type="text" id="add-nome" placeholder="Nome" required>
+                <input type="text" id="add-principioAtivo" placeholder="Princípio Ativo">
+                <input type="text" id="add-fabricante" placeholder="Fabricante">
+                <input type="text" id="add-categoria" placeholder="Categoria">
+                <textarea id="add-descricao" placeholder="Descrição"></textarea>
+                <textarea id="add-indicacoes" placeholder="Indicações"></textarea>
+                <textarea id="add-contraIndicacoes" placeholder="Contraindicações"></textarea>
+                <input type="text" id="add-imagem" placeholder="URL da Imagem">
+                <button type="submit" id="btn-adicionar">Adicionar</button>
+            </form>
         </div>
-</section>
+
+        <div class="form-container">
+            <h2>Modificar Medicamento (PUT)</h2>
+            <form id="form-modificar">
+                <input type="number" id="mod-id" placeholder="ID do Medicamento a ser modificado" required>
+                <input type="text" id="mod-nome" placeholder="Novo Nome" required>
+                <input type="text" id="mod-principioAtivo" placeholder="Novo Princípio Ativo">
+                <input type="text" id="mod-fabricante" placeholder="Novo Fabricante">
+                <input type="text" id="mod-categoria" placeholder="Nova Categoria">
+                <textarea id="mod-descricao" placeholder="Nova Descrição"></textarea>
+                <textarea id="mod-indicacoes" placeholder="Novas Indicações"></textarea>
+                <textarea id="mod-contraIndicacoes" placeholder="Novas Contraindicações"></textarea>
+                <input type="text" id="mod-imagem" placeholder="Nova URL da Imagem">
+                <button type="submit" id="btn-modificar">Modificar</button>
+            </form>
+        </div>
+
+        <div class="form-container">
+            <h2>Deletar Medicamento (DELETE)</h2>
+            <p>Digite o ID do medicamento para deletar:</p>
+            <form id="form-deletar" style="display: flex; gap: 10px;">
+                <input type="number" id="del-id" placeholder="ID para Deletar" required style="flex-grow: 1; margin-bottom: 0;">
+                <button type="submit" id="btn-deletar" style="background-color: #dc3545;">Deletar</button>
+            </form>
+        </div>
+
+        <div class="remedio-cards" id="saida">
+            </div>
+    </section>
 </body>
 </html>
