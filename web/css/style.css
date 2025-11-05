@@ -165,3 +165,128 @@ input {
     border-radius: 8px;
     object-fit: cover; /* garante que a imagem se ajuste bem */
 }
+
+/* --- Estilos para modificar.html (Forms de CRUD) --- */
+
+/* Ajusta o layout da seção principal para melhor visualização dos formulários */
+.pesquisa-central {
+    padding-top: 30px;
+    padding-bottom: 50px;
+    gap: 30px; /* Espaço entre os containers de formulário */
+}
+
+/* Container de cada formulário (Adicionar, Modificar, Deletar) */
+.form-container {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 30px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    text-align: left; /* Alinha o texto e campos dentro do container à esquerda */
+}
+
+.form-container h2 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #1caa1c; /* Cor verde para destacar o título */
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* Estilo geral para todos os formulários */
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaço entre os campos do formulário */
+}
+
+/* Estilo para inputs e textareas dentro dos formulários */
+.form-container input:not([type="submit"]),
+.form-container textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box; /* Garante que padding e border não aumentem o tamanho total */
+    font-size: 1rem;
+    font-family: 'Lexend', sans-serif;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-container input:focus,
+.form-container textarea:focus {
+    border-color: #1caa1c;
+    outline: none;
+    box-shadow: 0 0 8px rgba(28, 170, 28, 0.2);
+}
+
+.form-container textarea {
+    resize: vertical; /* Permite redimensionamento vertical */
+    min-height: 80px;
+}
+
+/* Estilo para todos os botões de submit */
+.form-container button[type="submit"] {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    margin-top: 10px;
+}
+
+.form-container button[type="submit"]:active {
+    transform: translateY(1px);
+}
+
+/* Botão Adicionar (Verde) */
+#btn-adicionar {
+    background-color: #1caa1c; /* Cor verde para POST/Criação */
+}
+
+#btn-adicionar:hover {
+    background-color: #158a15;
+}
+
+/* Botão Modificar (Azul/Destaque, um pouco diferente do verde) */
+#btn-modificar {
+    background-color: #007bff; /* Cor azul para PUT/Atualização */
+}
+
+#btn-modificar:hover {
+    background-color: #0056b3;
+}
+
+/* Botão Deletar (Vermelho) - Estilos para anular o estilo inline e garantir hover */
+#btn-deletar {
+    background-color: #dc3545 !important; 
+}
+
+#btn-deletar:hover {
+    background-color: #c82333 !important;
+}
+
+/* Estilo para a seção de feedback (mensagens de sucesso/erro) */
+#saida-feedback {
+    min-height: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Ajusta o texto de instrução no formulário de deletar */
+.form-container p {
+    margin: 0 0 15px 0;
+    color: #555;
+}
